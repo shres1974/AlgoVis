@@ -24,7 +24,7 @@
 - Pause and resume to check current status
 
 ## Guide
-- [How to build and run](/build/BUILD.md)
+- [How to build and run](/BUILD.md)
 
 
 ## Bugs
