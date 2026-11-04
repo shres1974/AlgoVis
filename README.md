@@ -1,57 +1,59 @@
-# 🎯 AlgoVis
-## 🌟 Algorithm Visualization Showcase
+# AlgoVis
 
-AlgoVis is an interactive visualization tool designed to demonstrate the execution of various **sorting** and **grid-based** algorithms. It provides an intuitive way to analyze and understand algorithm behavior in real-time through animations and graphical representations.
+An interactive desktop app, written in C++, that animates sorting and pathfinding algorithms step by step so you can see how they work.
 
-## 🔍 Algorithm Demonstrations
+![BFS pathfinding on a grid](demo/BFS-Pathfinder-Demo.gif)
 
-### 🎨 Flood Fill in a 2D Grid
-Flood Fill algorithm demonstrates how an area can be recursively filled starting from a given point, similar to a paint bucket tool in image editors.
-![Flood Fill](demo/Flood-Fill-Demo.gif)
+## Overview
 
-### 🗺️ Pathfinding with BFS in a 2D Grid
-Breadth-First Search (BFS) finds the shortest path in an unweighted grid, useful for pathfinding in navigation systems and AI applications.
-![BFS Pathfinder](demo/BFS-Pathfinder-Demo.gif)
+You build an array or a grid, choose an algorithm, and watch it run. The speed is adjustable and you can pause at any step. I built it to practise C++ application design: a menu-driven UI, a real-time render loop, and algorithms that run one step per frame so they can be animated.
 
-### 📊 Insertion Sort
-Insertion Sort builds a sorted array one element at a time, efficiently handling small datasets and nearly sorted data.
-![Insertion Sort](demo/Insertion-Sort-Demo.gif)
+**Tech:** C++, SFML, CMake
 
-### 🔄 Shell Sort
-Shell Sort extends Insertion Sort by comparing distant elements to reduce total comparisons, significantly improving efficiency.
-![Shell Sort](demo/Shell-Sort-Demo.gif)
+## Features
 
-### 🔀 Gnome Sort
-Gnome Sort swaps misplaced elements while iterating, behaving similarly to Insertion Sort but without pre-determined gap sequences.
-![Gnome Sort](demo/Gnome-Sort-Demo.gif)
+- **8 algorithms**
+  - Sorting: Bubble, Selection, Insertion, Shell, Gnome
+  - Grid: Flood Fill, BFS shortest path, DFS
+- **Custom input:** choose the array size and grid dimensions.
+- **Playback controls:** adjust the speed, pause, and resume.
+- **Menu-driven interface:** move between sketches and algorithms without restarting.
 
-## ✨ Features
-- 🎛️ **Custom-sized array and 2D grid visualization** for dynamic exploration.
-- 🔢 **5 sorting algorithms** and **3 grid algorithms** with real-time visualization.
-- ⚡ **Speed control** to adjust algorithm execution rate.
-- ⏯️ **Pause and resume functionality** to analyze the algorithm at any step.
-- 🖱️ **Interactive interface** to select different algorithms and customize input data.
+## Demos
 
-## 🚀 How to Build and Run
-For detailed setup instructions, refer to the [Build Guide](/BUILD.md).
+| Insertion Sort | Shell Sort |
+|---|---|
+| ![Insertion Sort](demo/Insertion-Sort-Demo.gif) | ![Shell Sort](demo/Shell-Sort-Demo.gif) |
 
-## 🐛 Known Bugs
-- ⚠️ Speed control is tied to **FPS adjustments**, leading to occasional UI lag.
-- 💾 Handling **large data structures** increases **memory usage**, causing slowdowns.
+| Gnome Sort | Flood Fill |
+|---|---|
+| ![Gnome Sort](demo/Gnome-Sort-Demo.gif) | ![Flood Fill](demo/Flood-Fill-Demo.gif) |
 
-## 🔮 Planned Enhancements
-- 📊 **Custom graph creation** for interactive graph-based problem-solving.
-- 🌳 **Tree-like data structures** for additional algorithm demonstrations.
-- 🔍 **Graph and tree algorithms** such as DFS, Dijkstra's, and A* pathfinding.
-- ⚡ **Optimized rendering** to reduce performance overhead.
+## Design
 
-## 📐 UML Diagram
-A structured overview of the AlgoVis system architecture.
-![UML](demo/AlgoSketch-UML.jpeg)
+The app is split into a few focused parts:
 
-## 🤝 Contributions
-We welcome contributions! Feel free to fork the repository, submit pull requests, or report issues. Your ideas and improvements can help expand AlgoVis.
+- **Managers** handle the window, input events, shared resources such as fonts, and the stack of screens.
+- **States** are the individual screens: the main menu, sketch setup, algorithm selection, and help.
+- **Sketches** are the data being visualized (an array or a grid). Each one runs its algorithm one step per frame and draws itself.
 
-## 📜 License
-This project is licensed under the **MIT License**.
+![Class diagram](demo/AlgoSketch-UML.jpeg)
 
+## Build and run
+
+You need a C++ compiler, CMake, and SFML 2.5+.
+
+```bash
+mkdir build bin && cd build
+cmake ..
+make
+cd ../bin && ./AlgoVis
+```
+
+See [BUILD.md](BUILD.md) for detailed setup steps.
+
+## Next steps
+
+- Graph algorithms: Dijkstra, A*
+- Tree data structures
+- Smoother rendering for large inputs
